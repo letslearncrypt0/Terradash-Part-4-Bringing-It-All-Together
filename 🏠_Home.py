@@ -57,7 +57,7 @@ st.write(
     The data for this analysis were selected from the [**Flipside Crypto**](https://flipsidecrypto.xyz/)
     data platform by using its **REST API**. These queries are currently set to **re-run every 24 hours** to cover the 
     latest data and are imported as a JSON file directly to each page. The codes for this tool are saved and accessible
-     in its [**GitHub Repository**](https://github.com/0xHaM3d/Terra---5.-Terradash-Part-4-Bringing-It-All-Together).
+     in its [**GitHub Repository**](https://github.com/0xHaM3d/Terradash-Part-4-Bringing-It-All-Together).
 
     As the queries are updated on a daily basis to cover the most recent data, there is a chance
     that viewers encounter inconsistent data through the app. Due to the heavy computational power required to execute

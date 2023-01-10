@@ -98,6 +98,7 @@ fig = px.bar(df, x='DATE', y='Validators', color='ACTION')
 fig.update_layout(title_text='Daily Validators Count per Action')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
+
 fig = px.bar(df, x='DATE', y='Volume(LUNA2.0)', color='ACTION')
 fig.update_layout(title_text='Daily Volume(LUNA2.0) per Action')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
@@ -114,40 +115,9 @@ fig = px.bar(df, x='DATE', y='Net Staked Volume($)', color='ACTION')
 fig.update_layout(title_text='Daily Net Staked Volume($) per Action')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
-st.write("")
-st.write("")
-st.write("")
-st.write("")
-
-st.subheader('New Users as Delegator')
-
-
-@st.cache(ttl=10000)
-def gat_data(query):
-    if query == 'New Users':
-        return pd.read_json(
-            'https://node-api.flipsidecrypto.com/api/v2/queries/70f60d13-78f5-4fc8-a852-70f3dc5686fa/data/latest'
-        )
-
-
-new_users_over_time = gat_data('New Users')
-df1 = new_users_over_time
-fig = px.bar(df1, x='DATE', y='New Delegators')
-fig.update_layout(title_text='Daily New Delegators')
-st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
-st.write("")
-st.write("")
-st.write("")
-st.write("")
-
 st.subheader('Staking Metrics in Cumulative State')
 st.write("")
 st.write("")
-
-stakin_over_time = gat_data('Staking Metrics')
-df = stakin_over_time
 c1, c2 = st.columns(2)
 with c1:
     fig = px.area(df, x='DATE', y='Cumulative Staked Volume(LUNA2.0)', color='ACTION')
@@ -168,16 +138,35 @@ with c2:
     fig.update_layout(title_text='Cumulative Net Staked Volume($)', showlegend=False)
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
-c1, c2 = st.columns(2)
-with c1:
-    fig = px.area(df, x='DATE', y='Cumulative Delegation Tx Count', color='ACTION')
-    fig.update_layout(title_text='Cumulative Delegation Tx Count')
-    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+fig = px.area(df, x='DATE', y='Cumulative Delegation Tx Count', color='ACTION')
+fig.update_layout(title_text='Cumulative Delegation Tx Count')
+st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
+
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+
+st.subheader('New Users as Delegator')
+
+
+@st.cache(ttl=10000)
+def gat_data(query):
+    if query == 'New Users':
+        return pd.read_json(
+            'https://node-api.flipsidecrypto.com/api/v2/queries/70f60d13-78f5-4fc8-a852-70f3dc5686fa/data/latest'
+        )
+
 
 new_users_over_time = gat_data('New Users')
-df1 = new_users_over_time
+df = new_users_over_time
+c1, c2 = st.columns(2)
+with c1:
+    fig = px.bar(df, x='DATE', y='New Delegators')
+    fig.update_layout(title_text='Daily New Delegators')
+    st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 with c2:
-    fig = px.area(df1, x='DATE', y='Cumulative New Delegators')
+    fig = px.area(df, x='DATE', y='Cumulative New Delegators')
     fig.update_layout(title_text='Cumulative New Delegators', showlegend=False)
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
@@ -220,6 +209,7 @@ st.write("")
 
 st.subheader('Top 10 Delegator & Validators by the Most Net Staking Volume(LUNA2.0)')
 
+
 st.write("")
 st.write("")
 @st.cache(ttl=10000)
@@ -232,6 +222,7 @@ def gat_data(query):
         return pd.read_json(
             'https://node-api.flipsidecrypto.com/api/v2/queries/19de1452-a2b8-4ca5-8879-eafee8c6950c/data/latest'
         )
+
 
 top10_delegators = gat_data('Top T0 Delegators')
 df = top10_delegators
@@ -269,6 +260,7 @@ def gat_data(query):
             'https://node-api.flipsidecrypto.com/api/v2/queries/645b5810-23c2-4112-9774-3d1d5ff6ebc5/data/latest'
         )
 
+
 top10_reciver = gat_data('Top T0 Reward Recivers')
 df = top10_reciver
 c1, c2 = st.columns(2)
@@ -283,7 +275,3 @@ with c2:
     fig = px.pie(df, values='Reciver Count', names='DITRIBUTION', title='Distribution of Rewards Reciver')
     fig.update_traces(textinfo='value+percent', textposition='inside')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
-
-
-
-

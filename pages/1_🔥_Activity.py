@@ -141,11 +141,12 @@ st.subheader('Specific whales Behaviour analysis')
 
 whales_behaviour = gat_data('whales Behaviour')
 df = whales_behaviour
-fig = px.bar(df, x='DATE', y=['Whales Selling Cnt', 'Whales Buying Cnt'])
-fig.update_layout(title_text='Whales Behaviour by day')
+
+fig = px.bar(df, x='DATE', y=['WHALES_BUYING_CNT', 'WHALES_SELLING_CNT'])
+fig.update_layout(title_text='Whales Behaving by day')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
-fig = px.line(df, x='DATE', y=['Tx Count','Volume Moved', 'Net Whales Behavior'], log_y=True)
+fig = px.line(df, x='DATE', y=['TX_CNT', 'MOVED_VOLUME', 'NET_WHALES_BEHAVIOR'], log_y=True)
 fig.update_layout(title_text='Transaction, NET Behaving & Moved Volume per day')
 st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
@@ -252,9 +253,9 @@ success_fail_tx_rate = gat_data('Success Tx/Minute & Failed Rate in Total')
 df = success_fail_tx_rate
 c1, c2 = st.columns(2)
 with c1:
-    st.metric(label='**Success Tx/Minute**', value=str(df['Succeed Tx/Minute'].map('{:,.2f}'.format).values[0]))
+    st.metric(label='**Success Tx/Minute**', value=str(df['SUCCEED_TX_PER_MINUTE'].map('{:,.2f}'.format).values[0]))
 
 with c2:
-    st.metric(label='**Failed Transaction Rate(%)**', value=str(df['Failed Rate'].map('{:,.2f}'.format).values[0]))
+    st.metric(label='**Failed Transaction Rate(%)**', value=str(df['FAILED_RATE'].map('{:,.2f}'.format).values[0]))
 
 

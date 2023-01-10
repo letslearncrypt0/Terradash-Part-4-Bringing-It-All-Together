@@ -150,34 +150,34 @@ stakin_over_time = gat_data('Staking Metrics')
 df = stakin_over_time
 c1, c2 = st.columns(2)
 with c1:
-    fig = px.area(df, x='DATE', y=['Cumulative Staked Volume(LUNA2.0)'], color='ACTION')
+    fig = px.area(df, x='DATE', y='Cumulative Staked Volume(LUNA2.0)', color='ACTION')
     fig.update_layout(title_text='Cumulative Staked Volume(LUNA2.0)')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 with c2:
-    fig = px.area(df, x='DATE', y=['Cumulative Staked Volume($)'], color='ACTION')
+    fig = px.area(df, x='DATE', y='Cumulative Staked Volume($)', color='ACTION')
     fig.update_layout(title_text='Cumulative Staked Volume($)')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 c1, c2 = st.columns(2)
 with c1:
-    fig = px.area(df, x='DATE', y=['Cumulative Net Staked Volume(LUNA2.0)'])
+    fig = px.area(df, x='DATE', y='Cumulative Net Staked Volume(LUNA2.0)')
     fig.update_layout(title_text='Cumulative Net Staked Volume(LUNA2.0)', showlegend=False)
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 with c2:
-    fig = px.area(df, x='DATE', y=['Cumulative Net Staked Volume($)'])
+    fig = px.area(df, x='DATE', y='Cumulative Net Staked Volume($)')
     fig.update_layout(title_text='Cumulative Net Staked Volume($)', showlegend=False)
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 c1, c2 = st.columns(2)
 with c1:
-    fig = px.area(df, x='DATE', y=['Cumulative Delegation Tx Count'], color='ACTION')
+    fig = px.area(df, x='DATE', y='Cumulative Delegation Tx Count', color='ACTION')
     fig.update_layout(title_text='Cumulative Delegation Tx Count')
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
 new_users_over_time = gat_data('New Users')
 df = new_users_over_time
 with c2:
-    fig = px.area(df, x='DATE', y=['Cumulative New Delegators'])
+    fig = px.area(df, x='DATE', y='Cumulative New Delegators')
     fig.update_layout(title_text='Cumulative New Delegators', showlegend=False)
     st.plotly_chart(fig, use_container_width=True, theme=theme_plotly)
 
